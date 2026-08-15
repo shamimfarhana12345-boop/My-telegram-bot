@@ -227,4 +227,13 @@ while True:
   except Exception as main_err:
     print(f"Loop Error: {main_err}")
 
-  time.sleep(5)
+  time.sleep(5)import os
+import http.server
+import socketserver
+
+# Render Port Binding Fix
+PORT = int(os.environ.get("PORT", 10000))
+handler = http.server.SimpleHTTPRequestHandler
+with socketserver.TCPServer(("", PORT), handler) as httpd:
+  httpd.serve_forever()
+
